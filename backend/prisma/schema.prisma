@@ -1,0 +1,29 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  color     String
+  createdAt DateTime @default(now())
+  cells     Cell[]
+}
+
+model Cell {
+  id         String    @id @default(uuid())
+  row        Int
+  column     Int
+  ownerId    String?
+  owner      User?     @relation(fields: [ownerId], references: [id])
+  capturedAt DateTime?
+
+  @@unique([row, column])
+  @@index([ownerId])
+}
