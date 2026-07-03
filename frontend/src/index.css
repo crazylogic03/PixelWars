@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* ─── Light Theme Palette ─────────────────────────────── */
+  --color-bg-primary: #F7F9FC;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  --color-bg-card-hover: #F8FAFC;
+  --color-bg-tile: #F8FAFC;
+  --color-bg-tile-hover: #EFF4FA;
+  --color-bg-sidebar: #F7F9FC;
+
+  --color-accent: #3B82F6;
+  --color-accent-glow: #3B82F640;
+  --color-accent-light: #60A5FA;
+  --color-accent-dark: #2563EB;
+
+  --color-success: #22C55E;
+  --color-success-light: #4ADE80;
+  --color-success-glow: #22C55E30;
+  --color-warning: #F59E0B;
+  --color-warning-glow: #F59E0B30;
+  --color-danger: #EF4444;
+  --color-danger-glow: #EF444430;
+
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748B;
+  --color-text-accent: #3B82F6;
+
+  --color-border: #E5EAF1;
+  --color-border-light: #E8EDF4;
+
+  --color-gold: #F59E0B;
+  --color-silver: #94A3B8;
+  --color-bronze: #D97706;
+}
+
+/* ─── Global Styles ─────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ─── Card Styles ───────────────────────────────────────────── */
+
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.card-sm {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+/* ─── Grid Tile Styles ──────────────────────────────────────── */
+
+.tile {
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.tile-empty {
+  background: #F9FAFC;
+  border: 1px solid #D8DEE8;
+}
+
+.tile-empty:hover {
+  background: var(--color-bg-tile-hover);
+  border-color: var(--color-accent);
+  transform: scale(1.1);
+  z-index: 10;
+  box-shadow: 0 0 0 2px var(--color-accent-glow);
+}
+
+/* ─── Territory Borders ─────────────────────────────────────── */
+
+.territory-connected-top {
+  border-top-color: transparent !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.territory-connected-bottom {
+  border-bottom-color: transparent !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.territory-connected-left {
+  border-left-color: transparent !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.territory-connected-right {
+  border-right-color: transparent !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* ─── Stat Counter ──────────────────────────────────────────── */
+
+.stat-value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Cooldown Circle ───────────────────────────────────────── */
+
+.cooldown-circle {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes grid-bg-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-grid-bg {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-bg-move 4s linear infinite;
+}
+
+/* ─── Landing Page ──────────────────────────────────────────── */
+
+.landing-gradient {
+  background: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      rgba(59, 130, 246, 0.08),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 80% 50%,
+      rgba(139, 92, 246, 0.04),
+      transparent
+    ),
+    var(--color-bg-primary);
+}
+
+/* ─── Button Styles ─────────────────────────────────────────── */
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  color: white;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--color-accent-glow);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ─── Section Headers ───────────────────────────────────────── */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 18px;
+}
+
+.section-header-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+}
+
+/* ─── View All Link ─────────────────────────────────────────── */
+
+.view-all-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background-color: #F8FAFC;
+  padding: 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.view-all-link:hover {
+  background-color: var(--color-bg-tile-hover);
+  color: var(--color-text-primary);
+}
+
+/* ─── Legend ─────────────────────────────────────────────────── */
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
