@@ -3,11 +3,14 @@ import type { ServerToClientEvents, ClientToServerEvents } from "../types";
 
 export type TypedSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 
+const SOCKET_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:4000";
+
 let socket: TypedSocket | null = null;
 
 export function getSocket(): TypedSocket {
   if (!socket) {
-    socket = io({
+    socket = io(SOCKET_URL, {
       autoConnect: false,
       reconnection: true,
       reconnectionAttempts: 10,

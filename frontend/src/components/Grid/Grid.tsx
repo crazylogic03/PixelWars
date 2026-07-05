@@ -98,7 +98,7 @@ export default function Grid({
           maxScale={4}
           centerOnInit={true}
           wheel={{ step: 0.08 }}
-          panning={{ velocityDisabled: true }}
+          panning={{ velocityDisabled: true, excluded: ["tile", "tile-empty"] }}
           doubleClick={{ disabled: true }}
         >
           {({ zoomIn, zoomOut, resetTransform, instance }) => (
