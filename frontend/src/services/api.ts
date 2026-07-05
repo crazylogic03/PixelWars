@@ -1,9 +1,11 @@
 import type { GridResponse, LeaderboardEntry, StatsData } from "../types";
 
-const API_BASE = "/api";
+const API_BASE =
+  import.meta.env.VITE_API_URL || "http://localhost:4000";
 
 async function fetchJSON<T>(url: string): Promise<T> {
-  const response = await fetch(`${API_BASE}${url}`);
+  const response = await fetch(`${API_BASE}/api${url}`);
+
   if (!response.ok) {
     throw new Error(`API error: ${response.status} ${response.statusText}`);
   }
