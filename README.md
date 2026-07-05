@@ -1,20 +1,18 @@
-# ⚔️ PixelWars — Real-Time Territory Capture
+# PixelWars — Real-Time Territory Capture
 
-A live collaborative pixel grid where players compete to capture territory in real time. Every visitor gets a random identity and color, then battles for dominance on a 40×40 tile battlefield.
+A live collaborative pixel grid where players compete to capture territory in real time. Every visitor gets a random identity and color, then battles for dominance on a 40x40 tile battlefield.
 
-![PixelWars](https://img.shields.io/badge/status-live-brightgreen) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue) ![React](https://img.shields.io/badge/React-19-61DAFB) ![Socket.IO](https://img.shields.io/badge/Socket.IO-4.x-black)
-
-## ✨ Features
+## Features
 
 - **Real-Time Multiplayer** — Every tile capture broadcasts instantly to all connected players via Socket.IO
 - **Race-Condition Safe** — Prisma serializable transactions prevent simultaneous capture conflicts
 - **Territory Heatmap** — Adjacent tiles owned by the same player visually merge into territories
-- **Zoomable Grid** — Pan and zoom across the 40×40 battlefield with react-zoom-pan-pinch
+- **Zoomable Grid** — Pan and zoom across the 40x40 battlefield with react-zoom-pan-pinch
 - **Live Leaderboard** — Animated rankings that reorder in real time as players capture tiles
 - **Cooldown System** — 3-second server-enforced cooldown between captures with animated SVG timer
 - **No Login Required** — Auto-generated guest identities stored in localStorage
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### Frontend
 - React 19 + TypeScript
@@ -34,7 +32,7 @@ A live collaborative pixel grid where players compete to capture territory in re
 ### Database
 - PostgreSQL (Neon)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 pixel/
@@ -61,7 +59,7 @@ pixel/
 └── .gitignore
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -96,7 +94,7 @@ cp .env.example .env
 ```bash
 cd backend
 npx prisma db push    # Push schema to database
-npm run db:seed       # Seed the 40×40 grid (1,600 tiles)
+npm run db:seed       # Seed the 40x40 grid (1,600 tiles)
 ```
 
 ### 4. Run Development Servers
@@ -109,11 +107,11 @@ cd backend && npm run dev
 cd frontend && npm run dev
 ```
 
-### 5. Play!
+### 5. Play
 
 Open http://localhost:5173 in multiple browser tabs to test real-time multiplayer.
 
-## 🎮 How to Play
+## How to Play
 
 1. **Choose your name and color** on the landing page
 2. **Click any unclaimed (white) tile** to capture it
@@ -121,7 +119,7 @@ Open http://localhost:5173 in multiple browser tabs to test real-time multiplaye
 4. **Build territory** by capturing adjacent tiles
 5. **Climb the leaderboard** by owning the most tiles
 
-## 📡 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -130,16 +128,12 @@ Open http://localhost:5173 in multiple browser tabs to test real-time multiplaye
 | GET | `/api/leaderboard` | Get top players |
 | GET | `/api/stats` | Get battlefield statistics |
 
-## 🔌 Socket Events
+## Socket Events
 
 | Event | Direction | Description |
 |-------|-----------|-------------|
-| `user:join` | Client → Server | Player joins the game |
-| `tile:capture` | Client → Server | Player captures a tile |
-| `tile:captured` | Server → Client | Broadcast tile update |
-| `leaderboard:update` | Server → Client | Broadcast ranking changes |
-| `users:online` | Server → Client | Broadcast online player list |
-
-## 📄 License
-
-MIT
+| `user:join` | Client to Server | Player joins the game |
+| `tile:capture` | Client to Server | Player captures a tile |
+| `tile:captured` | Server to Client | Broadcast tile update |
+| `leaderboard:update` | Server to Client | Broadcast ranking changes |
+| `users:online` | Server to Client | Broadcast online player list |
